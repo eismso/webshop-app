@@ -19,7 +19,7 @@ export class ProductManagementComponent implements OnInit {
     ngOnInit(): void { }
 
     search(): void {
-        const url = 'db.json';
+        const url = "http://localhost:3000/user";
 
         const headers = new HttpHeaders()
             .set('Accept', 'application/json');
