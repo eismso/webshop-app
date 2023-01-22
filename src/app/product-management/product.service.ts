@@ -10,7 +10,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  find(from: string, to: string): Observable<Product[]> {
+  find(title: string, vendor: string): Observable<Product[]> {
     const url = "http://localhost:3000/products";
 
     const params = new HttpParams()
