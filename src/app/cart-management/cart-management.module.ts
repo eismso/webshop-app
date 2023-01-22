@@ -4,6 +4,7 @@ import { CartEditComponent } from './cart-features/cart-edit/cart-edit.component
 import { CartSearchComponent } from './cart-features/cart-search/cart-search.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CART_MANAGEMENT_ROUTES } from './cart-management.routes';
 
 
 
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule.forChild(CART_MANAGEMENT_ROUTES),
     FormsModule
   ]
 })
