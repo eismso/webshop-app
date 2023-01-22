@@ -20,7 +20,6 @@ export class ProductService {
     const headers = new HttpHeaders()
       .set('accept', 'application/json');
 
-    return this.http
-      .get<Product[]>(url, { params, headers })
+    return this.http.get<Product[]>(url, { params, headers })
   }
 }

@@ -21,9 +21,14 @@ export class ProductManagementComponent implements OnInit {
     search(): void {
         this.productService
             .find(this.title, this.vendor)
-            .subscribe(
-                products => this.products = this.products
-            );
+            .subscribe({
+                next: (products) => {
+                    this.products = products;
+                },
+                error: (errResp) => {
+                    console.error('Error loading products', errResp);
+            }
+        });
     }
 
     select(product: Product): void {
