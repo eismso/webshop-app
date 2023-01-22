@@ -11,16 +11,15 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   find(from: string, to: string): Observable<Product[]> {
-    const url = "http://localhost:3000/user";
+    const url = "http://localhost:3000/products";
 
     const params = new HttpParams()
-      .set('from', from)
-      .set('to', to);
+      .set('title', title)
+      .set('vendor', vendor);
 
     const headers = new HttpHeaders()
       .set('accept', 'application/json');
 
-    return this.http
-      .get<Product[]>(url, { params, headers })
+    return this.http.get<Product[]>(url, { params, headers })
   }
 }

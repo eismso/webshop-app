@@ -5,7 +5,8 @@ import { ProductService } from './product.service';
 
 @Component({
     selector: 'app-product-management',
-    templateUrl: './product-management.component.html'
+    templateUrl: './product-management.component.html',
+    styleUrls: ['./product-management.component.css']
 })
 export class ProductManagementComponent implements OnInit {
 
@@ -21,9 +22,14 @@ export class ProductManagementComponent implements OnInit {
     search(): void {
         this.productService
             .find(this.title, this.vendor)
-            .subscribe(
-                products => this.products = this.products
-            );
+            .subscribe({
+                next: (products) => {
+                    this.products = products;
+                },
+                error: (errResp) => {
+                    console.error('Error loading products', errResp);
+            }
+        });
     }
 
     select(product: Product): void {
