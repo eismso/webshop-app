@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-      <h2 class="card-title">Cart Search</h2>
+      <h2 class="card-title">Suche nach Einkaufswagen</h2>
     </div>
   
     <div class="card-body">
@@ -12,15 +12,10 @@
           <input [(ngModel)]="id" name="id" class="form-control">
         </div>
         <div class="form-group">
-          <button
+          <button [disabled]="!id"
             (click)="search()"
             class="btn btn-default">
-            Search
-          </button>
-          <button
-            routerLink="/cart-edit"
-            class="btn btn-default">
-            Edit
+            Suchen
           </button>
         </div>
   
@@ -29,9 +24,9 @@
     </div>
   </div>
 
-  <div class="cart-card">
+  <!--<div class="cart-card" *ngIf="carts.length">
 
-    <table class="table table-condensed">
+    <table class="table table-striped">
       <thead>
           <tr>
               <th>Einkaufswagen ID</th>
@@ -42,9 +37,11 @@
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let c for cart">
-            <!--[class.table-active]="u === selectedUser"-->
-            <td>
+        <tr *ngFor="let c of cart" 
+        [ngClass]="{'active':c === selectedCart}">-->
+            <!--[class.table-active]="c === selectedCart">-->
+            
+            <!--<td>
                 <span class="badge badge-pill badge-info">
                     {{ c.id }}
                 </span>
@@ -52,24 +49,24 @@
             <td>{{c.items }}</td>
             <td>{{c.totalPrice }}</td>
             <td>{{c.user }}</td>
-            <!--<td>
+            <td>
                   <button
-                    (click)="select(u)"
+                    (click)="select(c)"
                     class="btn btn-info btn-sm"
                     style="min-width: 85px">
                     Select
                 </button>
-              </td>-->
+              </td>
           </tr>
       </tbody>
     </table>
   
-  </div>
-  
-  <!--<div class="row">
-    <div
-      *ngFor="let cart of carts"
-      class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <app-flight-card [item]="cart""></app-flight-card>
-    </div>
   </div>-->
+  
+  <div class="row">
+    <div
+      *ngFor="let c of carts"
+      class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <app-cart-card [item]="c"></app-cart-card>
+    </div>
+  </div>

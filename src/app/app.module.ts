@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     UserManagementComponent,
-    ProductManagementComponent
+    ProductManagementComponent,
   ],
   imports: [
     BrowserModule,

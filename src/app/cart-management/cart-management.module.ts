@@ -5,13 +5,15 @@ import { CartSearchComponent } from './cart-features/cart-search/cart-search.com
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CART_MANAGEMENT_ROUTES } from './cart-management.routes';
+import { CartCardComponent } from './cart-ui/cart-card/cart-card.component';
 
 
 
 @NgModule({
   declarations: [
     CartEditComponent,
-    CartSearchComponent
+    CartSearchComponent,
+    CartCardComponent
   ],
   imports: [
     CommonModule,
