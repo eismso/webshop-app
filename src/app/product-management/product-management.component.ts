@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { Product } from '../entities/product';
 import { ProductService } from './product.service';
 
@@ -14,8 +14,9 @@ export class ProductManagementComponent implements OnInit {
     vendor = '';
     products: Array<Product> = [];
     selectedProduct: Product | undefined;
+    message: string;
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService, private http:HttpClient) { }
 
     ngOnInit(): void { }
 
@@ -30,6 +31,46 @@ export class ProductManagementComponent implements OnInit {
                     console.error('Error loading products', errResp);
             }
         });
+    }
+
+    save(): void {
+
+        if (!this.selectedProduct) return;
+    
+        const url = "http://localhost:3000/products";
+    
+        const headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+    
+        this.http
+            .post<Product>(url, this.selectedProduct, { headers })
+            .subscribe({
+                next: (flight) => {
+                    this.selectedProduct = flight;
+                    this.message = 'Produkt geändert!';
+                },
+                error: (errResponse) => {
+                    this.message = 'Fehler beim Ändern des Produkts';
+                    console.error(this.message, errResponse);
+    
+                }
+            });
+    }
+
+    delete(): void {
+
+        if (!this.selectedProduct) return;
+    
+        const url = "http://localhost:3000/products";
+    
+        const headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+    
+        this.http
+            .delete<Product>(url)
+            .subscribe((s) => {
+                console.log(s);
+              });
     }
 
     select(product: Product): void {
