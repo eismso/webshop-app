@@ -31,14 +31,16 @@ export class ProductManagementComponent implements OnInit {
             .set('title', this.title)
             .set('vendor', this.vendor);
 
-        this.http.get<Product[]>(url, {headers, params}).subscribe({
-            next: (products) => {
-                this.products = products;
-            },
-            error: (err) => {
-                console.error('Error', err);
-            }
-        });
+        this.http
+            .get<Product[]>(url, {headers, params})
+            .subscribe({
+                next: (products) => {
+                    this.products = products;
+                },
+                error: (err) => {
+                    console.error('Error', err);
+                }
+            });
     }
 
     select(product: Product): void {
