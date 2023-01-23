@@ -1,0 +1,7 @@
+.card {
+    background-color: rgb(160, 191, 235);
+}
+
+.active-card {
+    background-color: rgb(236, 192, 128);
+}

@@ -1,0 +1,31 @@
+<div class="card" [ngClass]="{'active-card' : selected }">
+
+    <div class="card-header">
+        <h2 class="title">Einkaufswagen-ID: {{item?.id}}</h2>
+    </div>
+
+    <div class="card-body">
+        <p>Benutzer-ID: {{item?.user}}</p>
+        <p>Summe: {{item?.totalPrice}}</p>
+        <p>Produkte: {{item?.items}}</p>
+        <p></p>
+        <p>
+            <button class="btn btn-default" 
+                *ngIf="!selected" 
+                (click)="select()">Auswählen</button>
+
+            <button class="btn btn-default" 
+                *ngIf="selected" 
+                (click)="deselect()">Abwählen</button>
+            
+            <button class="btn btn-default"
+                *ngIf="selected">
+                <!--(click)="edit()"-->Ändern</button>
+
+            <button class="btn btn-default" 
+                *ngIf="selected" 
+                (click)="delete()">Löschen</button>    
+        </p>
+    </div>
+
+</div>
