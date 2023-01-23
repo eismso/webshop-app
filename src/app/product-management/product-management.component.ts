@@ -1,10 +1,12 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../entities/product';
+import { ProductService } from './product.service';
 
 @Component({
     selector: 'app-product-management',
-    templateUrl: './product-management.component.html'
+    templateUrl: './product-management.component.html',
+    styleUrls: ['./product-management.component.css']
 })
 export class ProductManagementComponent implements OnInit {
 
@@ -13,34 +15,24 @@ export class ProductManagementComponent implements OnInit {
     products: Array<Product> = [];
     selectedProduct: Product | undefined;
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private productService: ProductService) { }
 
     ngOnInit(): void { }
 
     search(): void {
-        const url = 'db.json';
-
-        const headers = new HttpHeaders()
-            .set('Accept', 'application/json');
-
-        const params = new HttpParams()
-            .set('title', this.title)
-            .set('vendor', this.vendor);
-
-        this.http
-            .get<Product[]>(url, {headers, params})
+        this.productService
+            .find(this.title, this.vendor)
             .subscribe({
-                next: (products: Product[]) => {
+                next: (products) => {
                     this.products = products;
                 },
                 error: (errResp) => {
                     console.error('Error loading products', errResp);
-                }
-            });
+            }
+        });
     }
 
-    select(f: Product): void {
-        this.selectedProduct = f;
+    select(product: Product): void {
+        this.selectedProduct = product;
     }
 }
