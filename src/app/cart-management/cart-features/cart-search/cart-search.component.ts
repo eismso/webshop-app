@@ -9,7 +9,7 @@ import { CartService } from '../../cart-data-access/cart.service';
   styleUrls: ['./cart-search.component.css']
 })
 export class CartSearchComponent {
-  id = "";
+  id = 0;
   carts: Array<Cart> = [];
   selectedCart: Cart | null = null;
 
