@@ -10,11 +10,12 @@ import { ProductService } from './product.service';
 })
 export class ProductManagementComponent implements OnInit {
 
+    message = "Produkt ändern?";
     title = '';
     vendor = '';
     products: Array<Product> = [];
     selectedProduct: Product | undefined;
-    message: string;
+    
 
     constructor(private productService: ProductService, private http:HttpClient) { }
 
@@ -33,6 +34,10 @@ export class ProductManagementComponent implements OnInit {
         });
     }
 
+    select(product: Product): void {
+        this.selectedProduct = product;
+    }
+
     save(): void {
 
         if (!this.selectedProduct) return;
@@ -45,8 +50,8 @@ export class ProductManagementComponent implements OnInit {
         this.http
             .post<Product>(url, this.selectedProduct, { headers })
             .subscribe({
-                next: (flight) => {
-                    this.selectedProduct = flight;
+                next: (product) => {
+                    this.selectedProduct = product;
                     this.message = 'Produkt geändert!';
                 },
                 error: (errResponse) => {
@@ -71,9 +76,5 @@ export class ProductManagementComponent implements OnInit {
             .subscribe((s) => {
                 console.log(s);
               });
-    }
-
-    select(product: Product): void {
-        this.selectedProduct = product;
     }
 }
