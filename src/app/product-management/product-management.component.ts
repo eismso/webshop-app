@@ -10,7 +10,7 @@ import { ProductService } from './product.service';
 })
 export class ProductManagementComponent implements OnInit {
 
-    message = "Produkt ändern?";
+    message = '';
     title = '';
     vendor = '';
     products: Array<Product> = [];
@@ -22,14 +22,21 @@ export class ProductManagementComponent implements OnInit {
     ngOnInit(): void { }
 
     search(): void {
-        this.productService
-            .find(this.title, this.vendor)
-            .subscribe({
-                next: (products) => {
-                    this.products = products;
-                },
-                error: (errResp) => {
-                    console.error('Error loading products', errResp);
+        const url = "http://localhost:3000/products";
+
+        const headers = new HttpHeaders()
+            .set('Accept', 'application/json');
+
+        const params = new HttpParams()
+            .set('title', this.title)
+            .set('vendor', this.vendor);
+
+        this.http.get<Product[]>(url, {headers, params}).subscribe({
+            next: (products) => {
+                this.products = products;
+            },
+            error: (err) => {
+                console.error('Error', err);
             }
         });
     }
