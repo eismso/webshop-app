@@ -11,6 +11,7 @@ import { ProductManagementComponent } from './product-management/product-managem
 import { CartManagementModule } from './cart-management/cart-management.module';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { FilterPipe } from './product-management/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     UserManagementComponent,
     ProductManagementComponent,
     HomeComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

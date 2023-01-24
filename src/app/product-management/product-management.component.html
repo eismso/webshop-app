@@ -18,10 +18,18 @@
               Suchen
           </button>
           </div>
+          <ng-container *ngIf="( products | filter : title) as result">
+            <label>Suchvorschläge:</label>
+            <p *ngFor="let product of result">
+              {{product.title}}
+            </p>
+            <p *ngIf="result.length === 0">Kein Produkt gefunden!</p>  
+          </ng-container>
       </form>
 
   </div>
 </div>
+
 
 <div class="product-card" *ngIf="products.length">
 

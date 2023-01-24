@@ -18,7 +18,17 @@ export class ProductManagementComponent implements OnInit {
 
     constructor(private productService: ProductService, private http:HttpClient) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { 
+
+        this.productService.getProduct().subscribe({
+            next: (products) => {
+                this.products = products;
+            },
+            error: (err) => {
+                console.debug('Error', err);
+            }
+          });
+        }
 
     search(): void {
         const url = "http://localhost:3000/products";
