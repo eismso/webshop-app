@@ -1,8 +1,10 @@
 import { CartItem } from "./cartItem";
 
-export interface Cart {
+export class Cart {
     id: number;
     items: CartItem[];
     totalPrice: number;
-    user: string;    
+    user: string;
+    
+    constructor(id: number, items: CartItem[], totalPrice:number, user: string) {}
 }

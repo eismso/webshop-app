@@ -18,7 +18,7 @@
             Suchen
           </button>
           <button routerLink="/carts/new"
-            (click)="edit()"
+            (click)="createCart()"
             class="btn btn-success">
             Neu
           </button>
@@ -27,64 +27,6 @@
       </form>
   
     </div>
-  </div>
-  
-  <div class="cart-card" *ngIf="carts.length">
-
-    <table class="table table-striped">
-      <thead>
-          <tr>
-              <th>Einkaufswagen ID</th>
-              <th>Produkte</th>
-              <th>Summe</th>
-              <th>Benutzer</th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let c of carts" 
-        [ngClass]="{'active':c === selectedCart}">
-            <!--[class.table-active]="c === selectedCart">-->
-            
-            <td>
-                <span class="badge badge-pill badge-info">
-                    {{ c.id }}
-                </span>
-            </td>
-            <td>{{c.items }}</td>
-            <td>{{c.totalPrice }}</td>
-            <td>{{c.user }}</td>
-            <td>
-                  <button
-                    (click)="select(c)"
-                    *ngIf="!selected"
-                    class="btn btn-info btn-sm"
-                    style="min-width: 85px">
-                    Auswählen
-                  </button>
-
-                  <button  
-                    *ngIf="selected"
-                    class="btn btn-info btn-sm"
-                    style="min-width: 85px"
-                    (click)="deselect()">Abwählen</button>
-            
-                  <button routerLink="/carts/:id/edit"
-                    class="btn btn-primary btn-sm"
-                    style="min-width: 85px"
-                    *ngIf="selected"
-                    (click)="edit()">Bearbeiten</button>
-
-                  <button 
-                    class="btn btn-danger btn-sm"
-                    style="min-width: 85px"
-                    *ngIf="selected" 
-                    (click)="delete()">Löschen</button>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-  
   </div>
   
   <div class="row">

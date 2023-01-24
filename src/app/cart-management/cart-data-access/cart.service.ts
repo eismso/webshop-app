@@ -15,7 +15,6 @@ export class CartService {
   constructor(private http:HttpClient) { }
   
   find(id: number): Observable<Cart[]>{
-    //const url = 'http://localhost:3000/carts';
 
     const headers = new HttpHeaders().set('Accept', 'application/json');
 
@@ -29,6 +28,27 @@ export class CartService {
     const headers = new HttpHeaders().set('Accept', 'application/json');
 
     return this.http.get<Cart[]>(this.url, {headers});
+    
+  }
+
+  addCart(newCart: Cart): Observable<Cart> {
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+
+    return this.http.post<Cart>(this.url, newCart, { headers });
+  }
+
+  updateCart(cart: Cart): Observable<Cart> {
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+
+    return this.http.put<Cart>(this.url +"/" + cart.id, {headers})
+  }
+
+  deleteCart(cart: Cart): Observable<Cart> {
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+
+    return this.http.delete<Cart>(this.url + "/" + cart.id, {headers});
 
   }
+
+
 }

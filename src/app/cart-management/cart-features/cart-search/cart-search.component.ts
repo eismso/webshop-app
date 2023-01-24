@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from 'src/app/entities/cart';
 import { CartService } from '../../cart-data-access/cart.service';
@@ -9,10 +9,11 @@ import { CartEditComponent } from '../cart-edit/cart-edit.component';
   templateUrl: './cart-search.component.html',
   styleUrls: ['./cart-search.component.css']
 })
-export class CartSearchComponent {
+export class CartSearchComponent implements OnInit{
   id = 0;
   carts: Array<Cart> = [];
   selectedCart: Cart | null = null;
+  message = '';
 
   @Input() item: Cart | null = null;
   @Input() selected: boolean = false;
@@ -56,14 +57,6 @@ export class CartSearchComponent {
 }
 
   createCart() {
-    this.router.navigate(['new'], {relativeTo: this.route});
   }
-
-  edit() {
-    //this.router.navigate(['edit'], {relativeTo: this.route});
-    this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
-  } 
-
-  
 
 }
