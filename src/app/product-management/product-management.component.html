@@ -47,14 +47,20 @@
           <td>{{p.title }}</td>
           <td>{{p.vendor }}</td>
           <td>{{p.price }}</td>
-          <td>{{p.instock }}</td>
+          <td>{{p.inStock }}</td>
           <td>
                 <button
                   (click)="select(p)"
                   class="btn btn-info btn-sm"
                   style="min-width: 85px">
-                  Auswählen
-              </button>
+                  Bearbeiten
+                </button>
+                <button
+                  (click)="delete(p)"
+                  class="btn btn-info btn-sm"
+                  style="min-width: 85px">
+                  Löschen
+                </button>
             </td>
         </tr>
     </tbody>
@@ -94,7 +100,7 @@
 
           <div class="form-group">
             <label>auf Lager?</label>
-            <input [(ngModel)]="selectedProduct!.instock" name="auf Lager?" class="form-control">
+            <input [(ngModel)]="selectedProduct!.inStock" name="auf Lager?" class="form-control">
         </div>
 
       <div class="form-group">
@@ -111,76 +117,3 @@
   </div>
 </div>
 
-
-
-<!-- <h1>Suche nach Produkten</h1>
-
-<div class="card">
-  <div class="card-header">
-  </div>
-  <div class="card-body">
-
-    <div>
-        {{ message }}
-    </div>
-
-    <form>
-  
-        <div class="form-group">
-          <label>Bezeichnung:</label>
-          <input (ngModel)="title" name="title" class="form-control">
-        </div>
-        <div class="form-group">
-          <button
-            (click)="search()"
-            class="btn btn-default">Suchen</button>
-        </div>
-        <div class="form-group">
-          <button
-            (click)="save()"
-            class="btn btn-default">Ändern</button>
-        </div>
-  
-      </form>
-  
-    </div>
-  </div>
-
-  <div class="card">
-
-    <table class="table table-condensed">
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>Bezeichnung</th>
-              <th>Verkäufer</th>
-              <th>Preis</th>
-              <th>auf Lager?</th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of products"
-            [class.table-active]="p === selectedProduct">
-            <td>
-                <span class="badge badge-pill badge-info">
-                    {{ p.id }}
-                </span>
-            </td>
-            <td>{{p.title }}</td>
-            <td>{{p.vendor }}</td>
-            <td>{{p.price }}</td>
-            <td>{{p.instock }}</td>
-            <td>
-                  <button
-                    (click)="select(p)"
-                    class="btn btn-info btn-sm"
-                    style="min-width: 85px">
-                    Select
-                </button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-  
-  </div> -->

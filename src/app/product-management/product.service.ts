@@ -24,7 +24,7 @@ export class ProductService {
 
   }
 
-  getCart(): Observable<Product[]>{
+  getProduct(): Observable<Product[]>{
     const headers = new HttpHeaders().set('Accept', 'application/json');
 
     return this.http.get<Product[]>(this.url, {headers});
