@@ -18,6 +18,20 @@
                 Search
             </button>
             </div>
+            <!--
+            <ng-container *ngIf="( user | filter : name) as result">
+                <label>Suchvorschläge:</label>
+                <p *ngFor="let user of result">
+                  {{user.name}}
+                </p>
+                <p *ngIf="result.length === 0">Kein User mit diesem Namen vorhanden.</p>  
+              </ng-container>
+            -->
+            <button
+            class="btn btn-default" (click)="search()" [disabled]="!name">
+            Neuen User anlegen
+            </button>
+
         </form>
 
     </div>
@@ -51,8 +65,16 @@
                     (click)="select(u)"
                     class="btn btn-info btn-sm"
                     style="min-width: 85px">
-                    Select
+                    Bearbeiten
                 </button>
+
+                <button
+                  (click)= "delete(u)"
+                  class="btn btn-info btn-sm"
+                  style="min-width: 85px">
+                  Löschen
+                </button>
+
               </td>
           </tr>
       </tbody>

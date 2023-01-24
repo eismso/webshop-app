@@ -94,4 +94,7 @@ export class ProductManagementComponent implements OnInit {
                 console.log(s);
               });
     }
+  
+  new(): void{};
+
 }

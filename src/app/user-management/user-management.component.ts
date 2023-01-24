@@ -19,11 +19,22 @@ export class UserManagementComponent implements OnInit {
   constructor (private userService: UserService, private http:HttpClient) {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+    this.userService.getUser().subscribe({
+    next: (user) => {
+        this.user = user;
+    },
+    error: (err) => {
+        console.debug('Error', err);
+     }
+  });
+}
 
   search(): void {
 
     this.userService.find(this.name).subscribe({
+        
         next: (user) => {
             this.user = user;
         },
@@ -63,12 +74,7 @@ export class UserManagementComponent implements OnInit {
 
     delete(): void {
 
-        if (!this.selectedUser) return;
-
         const url = "http://localhost:3000/users";
-
-        const headers = new HttpHeaders()
-            .set('Accept', 'application/json');
 
         this.http
             .delete<User>(url)
