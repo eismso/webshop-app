@@ -28,8 +28,8 @@
           <tr>
               <th>User ID</th>
               <th>Name</th>
-              <th>Adress</th>
-              <th>email</th>
+              <th>Adresse</th>
+              <th>E-Mail</th>
               <th></th>
           </tr>
       </thead>
@@ -55,9 +55,47 @@
           </tr>
       </tbody>
     </table>
-  
   </div>
 
+  <div class="card" *ngIf="selectedUser">
+    <div class="card-header">
+      <h2 class="card-title">User Edit</h2>
+    </div>
+    <div class="card-body">
+  
+      <div>
+          {{ message }}
+      </div>
+  
+      <form>
+          <div class="form-group">
+              <label>User ID</label>
+              <input [(ngModel)]="selectedUser!.userId" name="userId" class="form-control">
+          </div>
+  
+          <div class="form-group">
+              <label>Name</label>
+              <input [(ngModel)]="selectedUser!.name" name="name" class="form-control">
+          </div>
+
+          <div class="form-group">
+                <label>Adresse</label>
+                <input [(ngModel)]="selectedUser!.address" name="address" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>E-Mail</label>
+                <input [(ngModel)]="selectedUser!.email" name="email" class="form-control">
+            </div>
+
+        <div class="form-group">
+            <button (click)="save()" class="btn btn-default">Save</button>
+        </div>
+      </form>
+  
+    </div>
+  </div>
+  
   <div class="user-card">
     <div class="card-body">
         <pre>{{ selectedUser | json }}</pre>
