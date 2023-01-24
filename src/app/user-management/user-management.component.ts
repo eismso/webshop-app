@@ -23,7 +23,7 @@ export class UserManagementComponent implements OnInit {
 
   search(): void {
 
-    this.userService.find(this.id, this.name).subscribe({
+    this.userService.find(this.name).subscribe({
         next: (user) => {
             this.user = user;
         },
@@ -31,25 +31,6 @@ export class UserManagementComponent implements OnInit {
             console.debug('Error', err);
         }
       });
-
-    /* const url = "http://localhost:3000/users";
-
-    const headers = new HttpHeaders()
-    .set('Accept','application/json');
-
-    const params = new HttpParams()
-        .set('name', this.name)
-
-    this.http
-        .get<User[]>(url, {headers, params})
-        .subscribe({
-            next: (users: User[]) => {
-                this.user = users;
-            },
-            error: (errResp: any) => {
-                console.error('Error loading User', errResp);
-            }
-        }); */
   }
 
   select(u: User): void {

@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {
    }
 
-   find(userId: number, name: string): Observable<User[]> {
+   find(name: string): Observable<User[]> {
     const url = 'http://localhost:3000/users';
 
     const headers = new HttpHeaders()
@@ -19,7 +19,6 @@ export class UserService {
 
     const params = new HttpParams()
       .set('name', name)
-      .set('User-ID', userId);
 
     return this.http.get<User[]>(url, { headers, params });
   }
