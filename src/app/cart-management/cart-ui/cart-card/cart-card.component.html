@@ -18,9 +18,10 @@
                 *ngIf="selected" 
                 (click)="deselect()">Abwählen</button>
             
-            <button class="btn btn-default"
-                *ngIf="selected">
-                <!--(click)="edit()"-->Ändern</button>
+            <button routerLink="/carts/:id/edit"
+                class="btn btn-default"
+                *ngIf="selected"
+                (click)="edit()">Bearbeiten</button>
 
             <button class="btn btn-default" 
                 *ngIf="selected" 

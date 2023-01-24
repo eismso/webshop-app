@@ -1,1 +1,39 @@
-<p>cart-edit works!</p>
+<div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Einkaufswagen bearbeiten</h2>
+    </div>
+
+    <div class="card-body">
+
+        <!--<form [formGroup]="editForm">-->
+        <form>
+
+            <div class="form-group">
+                <label>Einkaufswagen-ID:</label>
+                <input formControlName="id" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Benutzer-ID:</label>
+                <input formControlName="user" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Produkte:</label>
+                <input formControlName="items" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label>Summe:</label>
+                <input formControlName="totalPrice" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <button (click)="save()" class="btn btn-default">Speichern</button>
+            </div>
+
+        </form>
+    
+    </div>
+</div>
+

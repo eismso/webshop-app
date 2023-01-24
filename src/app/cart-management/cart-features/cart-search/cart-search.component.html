@@ -17,13 +17,18 @@
             class="btn btn-default">
             Suchen
           </button>
+          <button routerLink="/carts/new"
+            (click)="edit()"
+            class="btn btn-success">
+            Neu
+          </button>
         </div>
   
       </form>
   
     </div>
   </div>
-
+  
   <div class="cart-card" *ngIf="carts.length">
 
     <table class="table table-striped">
@@ -52,11 +57,30 @@
             <td>
                   <button
                     (click)="select(c)"
+                    *ngIf="!selected"
                     class="btn btn-info btn-sm"
                     style="min-width: 85px">
-                    Select
-                </button>
-              </td>
+                    Auswählen
+                  </button>
+
+                  <button  
+                    *ngIf="selected"
+                    class="btn btn-info btn-sm"
+                    style="min-width: 85px"
+                    (click)="deselect()">Abwählen</button>
+            
+                  <button routerLink="/carts/:id/edit"
+                    class="btn btn-primary btn-sm"
+                    style="min-width: 85px"
+                    *ngIf="selected"
+                    (click)="edit()">Bearbeiten</button>
+
+                  <button 
+                    class="btn btn-danger btn-sm"
+                    style="min-width: 85px"
+                    *ngIf="selected" 
+                    (click)="delete()">Löschen</button>
+            </td>
           </tr>
       </tbody>
     </table>
