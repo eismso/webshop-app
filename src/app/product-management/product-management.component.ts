@@ -12,7 +12,6 @@ export class ProductManagementComponent implements OnInit {
 
     message = '';
     title = '';
-    vendor = '';
     products: Array<Product> = [];
     selectedProduct: Product | undefined;
     
@@ -28,8 +27,7 @@ export class ProductManagementComponent implements OnInit {
             .set('Accept', 'application/json');
 
         const params = new HttpParams()
-            .set('title', this.title)
-            .set('vendor', this.vendor);
+            .set('title', this.title);
 
         this.http
             .get<Product[]>(url, {headers, params})

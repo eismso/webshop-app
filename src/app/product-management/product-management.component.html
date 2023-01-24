@@ -1,7 +1,75 @@
-<h1>Suche nach Produkten</h1>
 
-<div class="card">
+<div class="product-card">
+
   <div class="card-header">
+      <h2 class="card-title">Produktsuche</h2>
+  </div>
+
+  <div class="card-body">
+
+      <form>
+          <div class="form-group">
+              <label>Bezeichnung:</label>
+              <input [(ngModel)]="title" name="Bezeichnung" class="form-control">
+          </div>
+          <div class="form-group">
+          <button
+              class="btn btn-default" (click)="search()" [disabled]="!title">
+              Suchen
+          </button>
+          </div>
+      </form>
+
+  </div>
+</div>
+
+<div class="product-card" *ngIf="products.length">
+
+  <table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bezeichnung</th>
+            <th>Verkäufer</th>
+            <th>Preis</th>
+            <th>auf Lager?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products"
+          [ngClass]="{'active':p === selectedProduct}">
+          <td>
+              <span class="badge badge-pill badge-info">
+                  {{ p.id }}
+              </span>
+          </td>
+          <td>{{p.title }}</td>
+          <td>{{p.vendor }}</td>
+          <td>{{p.price }}</td>
+          <td>{{p.inStock }}</td>
+          <td>
+                <button
+                  (click)="select(p)"
+                  class="btn btn-info btn-sm"
+                  style="min-width: 85px">
+                  Bearbeiten
+                </button>
+                <button
+                  (click)="delete(p)"
+                  class="btn btn-info btn-sm"
+                  style="min-width: 85px">
+                  Löschen
+                </button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" *ngIf="selectedProduct">
+  <div class="card-header">
+    <h2 class="card-title">Produkt bearbeiten</h2>
   </div>
   <div class="card-body">
 
@@ -10,66 +78,42 @@
     </div>
 
     <form>
-  
         <div class="form-group">
-          <label>Bezeichnung:</label>
-          <input (ngModel)="title" name="title" class="form-control">
+            <label>ID</label>
+            <input [(ngModel)]="selectedProduct!.id" name="id" class="form-control">
         </div>
-        <div class="form-group">
-          <label>Verkäufer:</label>
-          <input (ngModel)="vendor" name="vendor" class="form-control">
-        </div>
-        <div class="form-group">
-          <button
-            (click)="search()"
-            class="btn btn-default">Suchen</button>
-        </div>
-        <div class="form-group">
-          <button
-            (click)="save()"
-            class="btn btn-default">Ändern</button>
-        </div>
-  
-      </form>
-  
-    </div>
-  </div>
 
-  <div class="card">
+        <div class="form-group">
+            <label>Bezeichnung</label>
+            <input [(ngModel)]="selectedProduct!.title" name="Bezeichnung" class="form-control">
+        </div>
 
-    <table class="table table-condensed">
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>Bezeichnung</th>
-              <th>Verkäufer</th>
-              <th>Preis</th>
-              <th>auf Lager?</th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of products"
-            [class.table-active]="p === selectedProduct">
-            <td>
-                <span class="badge badge-pill badge-info">
-                    {{ p.id }}
-                </span>
-            </td>
-            <td>{{p.title }}</td>
-            <td>{{p.vendor }}</td>
-            <td>{{p.price }}</td>
-            <td>{{p.instock }}</td>
-            <td>
-                  <button
-                    (click)="select(p)"
-                    class="btn btn-info btn-sm"
-                    style="min-width: 85px">
-                    Select
-                </button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-  
+        <div class="form-group">
+              <label>Verkäufer</label>
+              <input [(ngModel)]="selectedProduct!.vendor" name="Verkäufer" class="form-control">
+          </div>
+
+          <div class="form-group">
+              <label>Preis</label>
+              <input [(ngModel)]="selectedProduct!.price" name="Preis" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>auf Lager?</label>
+            <input [(ngModel)]="selectedProduct!.inStock" name="auf Lager?" class="form-control">
+        </div>
+
+      <div class="form-group">
+          <button (click)="save()" class="btn btn-default">Speichern</button>
+      </div>
+    </form>
+
   </div>
+</div>
+
+<div class="user-card">
+  <div class="card-body">
+      <pre>{{ selectedProduct | json }}</pre>
+  </div>
+</div>
+
