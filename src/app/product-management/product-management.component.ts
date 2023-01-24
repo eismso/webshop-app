@@ -12,14 +12,23 @@ export class ProductManagementComponent implements OnInit {
 
     message = '';
     title = '';
-    vendor = '';
     products: Array<Product> = [];
     selectedProduct: Product | undefined;
     
 
     constructor(private productService: ProductService, private http:HttpClient) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { 
+
+        this.productService.getProduct().subscribe({
+            next: (products) => {
+                this.products = products;
+            },
+            error: (err) => {
+                console.debug('Error', err);
+            }
+          });
+        }
 
     search(): void {
         const url = "http://localhost:3000/products";
@@ -28,8 +37,7 @@ export class ProductManagementComponent implements OnInit {
             .set('Accept', 'application/json');
 
         const params = new HttpParams()
-            .set('title', this.title)
-            .set('vendor', this.vendor);
+            .set('title', this.title);
 
         this.http
             .get<Product[]>(url, {headers, params})
@@ -86,4 +94,7 @@ export class ProductManagementComponent implements OnInit {
                 console.log(s);
               });
     }
+  
+  new(): void{};
+
 }

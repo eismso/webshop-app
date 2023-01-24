@@ -8,20 +8,27 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {
-   }
+  url = 'http://localhost:3000/users'
 
-   find(userId: number, name: string): Observable<User[]> {
-    const url = 'http://localhost:3000/users';
+  constructor(private http: HttpClient) {}
+
+   find(name: string): Observable<User[]> {
 
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
 
     const params = new HttpParams()
       .set('name', name)
-      .set('User-ID', userId);
 
-    return this.http.get<User[]>(url, { headers, params });
+    return this.http.get<User[]>(this.url, { headers, params });
+  }
+
+  getUser(): Observable<User[]>{
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+
+    return this.http.get<User[]>(this.url, {headers});
+
   }
 
 }
+
