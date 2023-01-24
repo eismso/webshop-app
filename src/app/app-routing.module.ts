@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductManagementComponent } from './product-management/product-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { HomeComponent } from './home/home.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -11,7 +12,8 @@ const APP_ROUTES: Routes = [
   },
   {
     path: 'home',
-    component: ProductManagementComponent,
+    component: HomeComponent,
+
   },
   {
     path: 'carts',
@@ -23,8 +25,12 @@ const APP_ROUTES: Routes = [
     component: UserManagementComponent
   },
   {
+    path: 'products',
+    component: ProductManagementComponent
+  },
+  {
     path: '**',
-    redirectTo: 'home'
+    component: HomeComponent
   }
 ];
 
