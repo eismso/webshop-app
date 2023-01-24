@@ -10,7 +10,7 @@ import { UserService } from './user.service';
   styleUrls: ['./user-management.component.css']
 })
 export class UserManagementComponent implements OnInit {
-
+  id = 0;
   name = '';
   user: Array<User> = [];
   selectedUser: User | undefined;
@@ -23,7 +23,16 @@ export class UserManagementComponent implements OnInit {
 
   search(): void {
 
-    const url = "http://localhost:3000/user";
+    this.userService.find(this.id, this.name).subscribe({
+        next: (user) => {
+            this.user = user;
+        },
+        error: (err) => {
+            console.debug('Error', err);
+        }
+      });
+
+    /* const url = "http://localhost:3000/users";
 
     const headers = new HttpHeaders()
     .set('Accept','application/json');
@@ -40,7 +49,7 @@ export class UserManagementComponent implements OnInit {
             error: (errResp: any) => {
                 console.error('Error loading User', errResp);
             }
-        });
+        }); */
   }
 
   select(u: User): void {
@@ -51,7 +60,7 @@ export class UserManagementComponent implements OnInit {
 
     if (!this.selectedUser) return;
 
-    const url = "http://localhost:3000/user";
+    const url = "http://localhost:3000/users";
 
     const headers = new HttpHeaders()
         .set('Accept', 'application/json');
@@ -75,7 +84,7 @@ export class UserManagementComponent implements OnInit {
 
         if (!this.selectedUser) return;
 
-        const url = "http://localhost:3000/user";
+        const url = "http://localhost:3000/users";
 
         const headers = new HttpHeaders()
             .set('Accept', 'application/json');

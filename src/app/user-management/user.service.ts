@@ -12,14 +12,14 @@ export class UserService {
    }
 
    find(userId: number, name: string): Observable<User[]> {
-    const url = 'http://localhost:3000/user';
+    const url = 'http://localhost:3000/users';
 
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
 
     const params = new HttpParams()
-      .set('User-ID', userId)
-      .set('User-Name', name);
+      .set('name', name)
+      .set('User-ID', userId);
 
     return this.http.get<User[]>(url, { headers, params });
   }
