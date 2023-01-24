@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <!--<div class="cart-card" *ngIf="carts.length">
+  <div class="cart-card" *ngIf="carts.length">
 
     <table class="table table-striped">
       <thead>
@@ -37,11 +37,11 @@
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let c of cart" 
-        [ngClass]="{'active':c === selectedCart}">-->
+        <tr *ngFor="let c of carts" 
+        [ngClass]="{'active':c === selectedCart}">
             <!--[class.table-active]="c === selectedCart">-->
             
-            <!--<td>
+            <td>
                 <span class="badge badge-pill badge-info">
                     {{ c.id }}
                 </span>
@@ -61,12 +61,12 @@
       </tbody>
     </table>
   
-  </div>-->
+  </div>
   
   <div class="row">
     <div
       *ngFor="let c of carts"
-      class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
       <app-cart-card [item]="c"></app-cart-card>
     </div>
   </div>
